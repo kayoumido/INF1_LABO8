@@ -5,4 +5,4 @@ set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wconversion -Wextra -pedantic")
 
 set(CMAKE_CXX_STANDARD 11)
 
-add_executable(Labo08 main.cpp rules.cpp rules.h typedef.h)
+add_executable(Labo08 main.cpp rules.cpp rules.h global.h)
