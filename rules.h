@@ -14,7 +14,8 @@ const unsigned short J_COORDINATE = 1;
 typedef unsigned coordinates[COORDINATES_SIZE];
 
 bool isLegalMove(board board, std::string move);
-void movePeg(board *board, std::string move);
+void getCoordinates(coordinates currentCoordinates, coordinates newCoordinates, char direction, unsigned movement_size);
+void movePeg(board board, std::string move);
 unsigned charToInt(const char &character);
 
 #endif

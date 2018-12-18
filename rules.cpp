@@ -14,68 +14,66 @@ Compilateur : MinGW-g++ <6.3.0>
  */
 
 #include <string>
-#include <sstream>
 #include "rules.h"
 
 bool isLegalMove(board board, std::string move) {
 
   char direction = move[INPUT_DIRECTION_POSITION];
 
-  coordinates targetPeg = {
+  coordinates pegCoordinates = {
     charToInt(move[INPUT_ROW_POSITION]) - 1,
     charToInt(move[INPUT_COL_POSITION]) - 1
   };
 
-  if (board[targetPeg[I_COORDINATE]][targetPeg[J_COORDINATE]] != CellState::PEG) return false;
+  if (board[pegCoordinates[I_COORDINATE]][pegCoordinates[J_COORDINATE]] != CellState::PEG) return false;
 
   coordinates pegToRemove;
-  coordinates newCoordinate;
+  coordinates newCoordinates;
+  getCoordinates(pegCoordinates, pegToRemove, direction, 1);
+  getCoordinates(pegCoordinates, newCoordinates, direction, MOVEMENT_SIZE);
+
+  return board[pegToRemove[I_COORDINATE]][pegToRemove[J_COORDINATE]] == CellState::PEG and
+        board[newCoordinates[I_COORDINATE]][newCoordinates[J_COORDINATE]] == CellState::HOLE;
+}
+
+void movePeg(board board, std::string move) {
+  char direction = move[INPUT_DIRECTION_POSITION];
+
+  coordinates pegCoordinates = {
+    charToInt(move[INPUT_ROW_POSITION]) - 1,
+    charToInt(move[INPUT_COL_POSITION]) - 1
+  };
+
+  coordinates pegToRemove;
+  coordinates newCoordinates;
+  getCoordinates(pegCoordinates, pegToRemove, direction, 1);
+  getCoordinates(pegCoordinates, newCoordinates, direction, MOVEMENT_SIZE);
+
+  board[pegToRemove[I_COORDINATE]][pegToRemove[J_COORDINATE]] = CellState::HOLE;
+  board[pegCoordinates[I_COORDINATE]][pegCoordinates[J_COORDINATE]] = CellState::HOLE;
+  board[newCoordinates[I_COORDINATE]][newCoordinates[J_COORDINATE]] = CellState::PEG;
+}
+
+void getCoordinates(coordinates currentCoordinates,
+                    coordinates newCoordinates,
+                    char direction,
+                    unsigned movement_size) {
+
+  newCoordinates[I_COORDINATE] = currentCoordinates[I_COORDINATE];
+  newCoordinates[J_COORDINATE] = currentCoordinates[J_COORDINATE];
 
   switch (direction) {
     case Directions::UP:
-      pegToRemove[I_COORDINATE] = targetPeg[I_COORDINATE]++;
-      newCoordinate[I_COORDINATE] = targetPeg[I_COORDINATE] + MOVEMENT_SIZE;
-      pegToRemove[J_COORDINATE] = newCoordinate[J_COORDINATE] = targetPeg[J_COORDINATE];
+      newCoordinates[I_COORDINATE] = currentCoordinates[I_COORDINATE] + movement_size;
       break;
     case Directions::DOWN:
-      pegToRemove[I_COORDINATE] = targetPeg[I_COORDINATE]--;
-      newCoordinate[I_COORDINATE] = targetPeg[I_COORDINATE] - MOVEMENT_SIZE;
-      pegToRemove[J_COORDINATE] = newCoordinate[J_COORDINATE] = targetPeg[J_COORDINATE];
+      newCoordinates[I_COORDINATE] = currentCoordinates[I_COORDINATE] - movement_size;
       break;
     case Directions::RIGHT:
-      pegToRemove[J_COORDINATE] = targetPeg[J_COORDINATE]++;
-      newCoordinate[J_COORDINATE] = targetPeg[J_COORDINATE] + MOVEMENT_SIZE;
-      pegToRemove[I_COORDINATE] = newCoordinate[I_COORDINATE] = targetPeg[I_COORDINATE];
+      newCoordinates[J_COORDINATE] = currentCoordinates[J_COORDINATE] + movement_size;
       break;
     case Directions::LEFT:
-      pegToRemove[J_COORDINATE] = targetPeg[J_COORDINATE]--;
-      newCoordinate[J_COORDINATE] = targetPeg[J_COORDINATE] - MOVEMENT_SIZE;
-      pegToRemove[I_COORDINATE] = newCoordinate[I_COORDINATE] = targetPeg[I_COORDINATE];
-      break;
-    default:
-      return false;
-  }
-
-  return board[pegToRemove[I_COORDINATE]][pegToRemove[J_COORDINATE]] == CellState::PEG and board[newCoordinate[I_COORDINATE]][newCoordinate[J_COORDINATE]];
-}
-
-void movePeg(board *board, std::string move) {
-
-}
-
-void getNewCoordinates(coordinates &pegCoordinates, char direction) {
-  switch (direction) {
-    case Directions::UP:
-      pegCoordinates[I_COORDINATE] += MOVEMENT_SIZE;
-      break;
-    case Directions::DOWN:
-      pegCoordinates[I_COORDINATE] -= MOVEMENT_SIZE;
-      break;
-    case Directions::RIGHT:
-      pegCoordinates[J_COORDINATE] += MOVEMENT_SIZE;
-      break;
-    case Directions::LEFT:
-      pegCoordinates[J_COORDINATE] -= MOVEMENT_SIZE;
+      newCoordinates[J_COORDINATE] = currentCoordinates[J_COORDINATE] - movement_size;
       break;
     default:;
   }
