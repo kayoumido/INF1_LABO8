@@ -1,9 +1,10 @@
-#ifndef LABO08_TYPEDEF_H
-#define LABO08_TYPEDEF_H
+#ifndef LABO08_GLOBAL_H
+#define LABO08_GLOBAL_H
 
 const unsigned short BOARD_COL_SIZE = 7;
 const unsigned short BOARD_ROW_SIZE = 7;
-
+const unsigned short MARGIN = 2;
+const unsigned short INITIAL_EMPTY_HOLE[] = {3, 3};
 typedef char board[BOARD_COL_SIZE][BOARD_ROW_SIZE];
 
 enum CellState {
