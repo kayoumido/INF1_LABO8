@@ -14,7 +14,7 @@ Compilateur : MinGW-g++ <6.3.0>
  */
 
 #include <string>
-#include "rules.h"
+#include "global.h"
 
 bool isLegalMove(board board, std::string move) {
   return true;
