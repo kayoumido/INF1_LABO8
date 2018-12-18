@@ -14,46 +14,46 @@ Compilateur : MinGW-g++ <6.3.0>
  */
 
 #include "display.h"
-#include <iostream>
-#include <string>
 
-using namespace std;
-const int MAX_COL = 7;
-const int MAX_ROW = 7;
-const string EMPTY = "  ";
-const char SPACE = ' ';
-const string DOUBLE_DOT = "..";
-const char OFF_SIDE = 'X';
-const char EMPTY_CASE = 'O';
-const char BUSY_CASE = '*';
+void generate(board board) {
+    for (int row = 0; row < BOARD_ROW_SIZE; ++row) {
+        for (int col = 0; col < BOARD_COL_SIZE; ++col) {
 
-void generate(board& board) {
-    for (unsigned int i = 1; i <= sizeof(board[0]); i++) {
-        for (unsigned int j = 1; j <= (sizeof(board[0]) / sizeof(board[0][0])); j++) {
-            if ((i == 6 || i == 7 || i == 1 || i == 2) && (j == 1 || j == 2 || j == 6 || j == 7)) {
-                board[i][j] = OFF_SIDE;
-            } else if (i == 4 && j == 4) {
-                board[i][j] = EMPTY_CASE;
-            } else {
-                board[i][j] = BUSY_CASE;
+            if (row == INITIAL_EMPTY_HOLE[0] and col == INITIAL_EMPTY_HOLE[1]) {
+                board[row][col] = CellState::HOLE;
+                continue;
             }
+
+            if ((row < MARGIN and col < MARGIN) or
+                (row > BOARD_ROW_SIZE - MARGIN - 1 and col > BOARD_COL_SIZE - MARGIN - 1) or
+                (row < MARGIN and col > BOARD_COL_SIZE - MARGIN - 1) or
+                (row > BOARD_ROW_SIZE - MARGIN - 1 and col < MARGIN)) {
+                board[row][col] = CellState::OUTBOUNDS;
+                continue;
+            }
+
+            board[row][col] = CellState::PEG;
         }
     }
 }
 
 void display(board board) {
-    for (unsigned int i = 1; i <= sizeof(board[0]); i++) {
-        for (unsigned int j = 1; j <= (sizeof(board[0]) / sizeof(board[0][0])); j++) {
-            if (board[i][j] == OFF_SIDE) {
-                cout << EMPTY << SPACE;
-            } else if (board[i][j] == EMPTY_CASE) {
-                cout << DOUBLE_DOT << SPACE;
-            } else {
-                cout << i << j << SPACE;
-            }
+    for (int row = 0; row < BOARD_ROW_SIZE; ++row) {
+        for (int col = 0; col < BOARD_COL_SIZE; ++col) {
+            std::cout << getDisplayValue(board, row, col) << SPACE;
         }
-        if (i < MAX_ROW) {
-            cout << endl;
-        }
+        std::cout << std::endl;
+    }
+}
+
+std::string getDisplayValue(const board board, int row, int col) {
+    switch (board[row][col]) {
+        case CellState::OUTBOUNDS:
+            return OUTBOUNDS_DISPLAY_VALUE;
+        case CellState::HOLE:
+            return HOLE_DISPLAY_VALUE;
+        case CellState::PEG:
+            return std::to_string(row) + std::to_string(col);
+        default:;
     }
 }
