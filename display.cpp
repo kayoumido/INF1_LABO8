@@ -54,6 +54,7 @@ std::string getDisplayValue(const board board, int row, int col) {
             return HOLE_DISPLAY_VALUE;
         case CellState::PEG:
             return std::to_string(row) + std::to_string(col);
-        default:;
+        // SHOULD NEVER HAPPEN
+        default:return "E";
     }
 }
