@@ -1,6 +1,5 @@
 #ifndef LABO08_RULES_H
 #define LABO08_RULES_H
-#include <string>
 #include "global.h"
 
 const unsigned short INPUT_ROW_POSITION = 0;
