@@ -15,18 +15,14 @@ Compilateur : MinGW-g++ <6.3.0>
 
 #include <iostream>
 #include "display.h"
-#include "rules.h"
+#include "help.h"
 
 using namespace std;
 
 int main() {
-  board board;
-  generate(board);
-  display(board);
-
-  string move = "42r";
-  if (isLegalMove(board, move)) {
-    movePeg(board, move);
+    board board;
+    generate(board);
+    cout << getHelpMoves(board)<<endl;
     display(board);
   }
 
