@@ -13,6 +13,8 @@ Compilateur : MinGW-g++ <6.3.0>
 -----------------------------------------------------------------------------------
  */
 
+#include <iostream>
+#include <string>
 #include "display.h"
 
 void generate(board board) {

@@ -1,6 +1,4 @@
 #include "global.h"
-#include <iostream>
-#include <string>
 
 const std::string OUTBOUNDS_DISPLAY_VALUE = "  ";
 const char SPACE = ' ';
