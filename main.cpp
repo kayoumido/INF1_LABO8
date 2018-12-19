@@ -20,8 +20,15 @@ Compilateur : MinGW-g++ <6.3.0>
 using namespace std;
 
 int main() {
-    board board;
-    generate(board);
+  board board;
+  generate(board);
+  display(board);
+
+  string move = "42r";
+  if (isLegalMove(board, move)) {
+    movePeg(board, move);
     display(board);
-    return 0;
+  }
+
+  return 0;
 }
