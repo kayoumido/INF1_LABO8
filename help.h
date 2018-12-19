@@ -12,7 +12,7 @@
  * @return a string which describe the possible moves
  * @return vector containing string of the help moves
  */
-std::vector<std::string>  getPossibilities(board Board, coordinates pos);
+std::vector<std::string> getPossibilities(const board& gameBoard, const coordinates& freeCell);
 
 /**
  * @brief format position with the given direction
@@ -21,7 +21,7 @@ std::vector<std::string>  getPossibilities(board Board, coordinates pos);
  * @param pos
  * @return string with the possible move
  */
-std::string formatHelpMove(Directions direction, coordinates pos);
+std::string formatHelpMove(const Directions& direction, const coordinates& pos);
 
 /**
  * @brief Check that the position is still on the board
@@ -29,7 +29,7 @@ std::string formatHelpMove(Directions direction, coordinates pos);
  * @param position
  * @return bool
  */
-bool isOnBoard(unsigned position);
+bool isOnBoard(const unsigned& position);
 
 /**
  * @brief Return help moves foreach free cells of the board
@@ -37,7 +37,7 @@ bool isOnBoard(unsigned position);
  * @param gameBoard
  * @return
  */
-std::vector<std::string> getHelpMoves(board gameBoard);
+std::vector<std::string> getHelpMoves(const board& gameBoard;
 
 /**
  * @brief Return true if the given cell (row, cell indices) is a peg
@@ -46,7 +46,7 @@ std::vector<std::string> getHelpMoves(board gameBoard);
  * @param pos
  * @return
  */
-bool cellHasPeg(board gameBoard, coordinates pos);
+bool cellHasPeg(const board& gameBoard, const coordinates& pos);
 
 #endif
 
