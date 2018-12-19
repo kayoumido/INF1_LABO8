@@ -4,9 +4,7 @@ Laboratoire : Labo08
 Fichier     : rules.cpp
 Auteur(s)   : Ilias Goujgali, Benoit Perret, Doran Kayoumi
 Date        : 12.12.2018
-
 But         :
-
 Remarque(s) :
 
 Compilateur : MinGW-g++ <6.3.0>
@@ -37,8 +35,8 @@ bool isLegalMove(board board, std::string move) {
 }
 
 void movePeg(board board, std::string move) {
-  char direction = move[INPUT_DIRECTION_POSITION];
 
+  char direction = move[INPUT_DIRECTION_POSITION];
   coordinates pegCoordinates = {
     charToInt(move[INPUT_ROW_POSITION]) - 1,
     charToInt(move[INPUT_COL_POSITION]) - 1
@@ -64,16 +62,16 @@ void getCoordinates(coordinates currentCoordinates,
 
   switch (direction) {
     case Directions::UP:
-      newCoordinates[I_COORDINATE] = currentCoordinates[I_COORDINATE] + movement_size;
+      newCoordinates[I_COORDINATE] += movement_size;
       break;
     case Directions::DOWN:
-      newCoordinates[I_COORDINATE] = currentCoordinates[I_COORDINATE] - movement_size;
+      newCoordinates[I_COORDINATE] -= movement_size;
       break;
     case Directions::RIGHT:
-      newCoordinates[J_COORDINATE] = currentCoordinates[J_COORDINATE] + movement_size;
+      newCoordinates[J_COORDINATE] += movement_size;
       break;
     case Directions::LEFT:
-      newCoordinates[J_COORDINATE] = currentCoordinates[J_COORDINATE] - movement_size;
+      newCoordinates[J_COORDINATE] -= movement_size;
       break;
     default:;
   }
