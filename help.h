@@ -3,7 +3,11 @@
 #include "global.h"
 #include <string>
 
-// declare function from help
-//...
+std::string getPossibilities(board Board, int row, int col);
+
+bool cellHasPeg(board gameBoard, int row, int col);
+
+std::string getHelpMoves(board gameBoard);
+
 #endif
 
