@@ -80,3 +80,8 @@ void getCoordinates(coordinates currentCoordinates,
 unsigned charToInt(const char &character) {
   return static_cast<unsigned>(character - ASCII_NUMBER_START);
 }
+
+bool isEndGame(const std::vector<std::string>& helpMoves)
+{
+  return !helpMoves.size();
+}

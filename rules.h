@@ -1,6 +1,7 @@
 #ifndef LABO08_RULES_H
 #define LABO08_RULES_H
 #include "global.h"
+#include <vector>
 #include <string>
 
 const unsigned short ASCII_NUMBER_START = 48;
@@ -43,4 +44,10 @@ void movePeg(board board, std::string move);
  */
 unsigned charToInt(const char &character);
 
+/**
+ * @brief Check if the game is finished. i.e there aren't any moves left
+ * @param helpMoves vector of possible moves
+ * @return bool
+ */
+bool isEndGame(const std::vector<std::string>& helpMoves);
 #endif
