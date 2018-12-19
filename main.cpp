@@ -15,20 +15,21 @@ Compilateur : MinGW-g++ <6.3.0>
 
 #include <iostream>
 #include "display.h"
-#include "rules.h"
-
+#include "help.h"
+#include <vector>
 using namespace std;
 
 int main() {
-  board board;
-  generate(board);
-  display(board);
-
-  string move = "42r";
-  if (isLegalMove(board, move)) {
-    movePeg(board, move);
+    board board;
+    generate(board);
+    vector<string> helpMoves =  getHelpMoves(board);
+    for (string move : helpMoves)
+    {
+        cout << move <<" ";
+    }
+    cout<< endl;
     display(board);
-  }
+
 
   return 0;
 }
