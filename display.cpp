@@ -1,11 +1,11 @@
 /*
 -----------------------------------------------------------------------------------
 Laboratoire : Labo08
-Fichier     : Labo08.cpp
+Fichier     : display.cpp
 Auteur(s)   : Ilias Goujgali, Benoit Perret, Doran Kayoumi
 Date        : 12.12.2018
 
-But         :
+But         : Contient toute les fonctions liés à l'affichage
 
 Remarque(s) :
 
@@ -19,12 +19,12 @@ Compilateur : MinGW-g++ <6.3.0>
 #include "display.h"
 
 
-void display(board board) {
+void display(board gameBoard) {
   std::cout << std::endl;
   for (int row = 0; row < BOARD_ROW_SIZE; ++row) {
     for (int col = 0; col < BOARD_COL_SIZE; ++col) {
       std::cout << std::setw(COL_WIDTH) << std::setfill(SPACE);
-      std::cout << getDisplayValue(board, row, col);
+      std::cout << getDisplayValue(gameBoard, row, col);
     }
     std::cout << std::endl;
   }
@@ -32,8 +32,8 @@ void display(board board) {
 }
 
 
-std::string getDisplayValue(const board board, int row, int col) {
-  switch (board[row][col]) {
+std::string getDisplayValue(const board gameBoard, int row, int col) {
+  switch (gameBoard[row][col]) {
     case CellState::OUTBOUNDS:
       return OUTBOUNDS_DISPLAY_VALUE;
     case CellState::HOLE:
@@ -59,11 +59,11 @@ void displayErrorMessage() {
   std::cout << ERROR_MESSAGE << std::endl;
 }
 
-void displayEndGame(board board, unsigned nbPegsLeft) {
+void displayEndGame(board gameBoard, unsigned nbPegsLeft) {
 
   if (nbPegsLeft == 1) {
-    // if the last is on the center of the board
-    if (board[INITIAL_EMPTY_HOLE[I_COORDINATE]][INITIAL_EMPTY_HOLE[J_COORDINATE]] == CellState::PEG) {
+    // if the last is on the center of the gameBoard
+    if (gameBoard[INITIAL_EMPTY_HOLE[I_COORDINATE]][INITIAL_EMPTY_HOLE[J_COORDINATE]] == CellState::PEG) {
       std::cout << PERFECT_MESSAGE;
     } else {
       std::cout << ALMOST_PERFECT_MESSAGE;

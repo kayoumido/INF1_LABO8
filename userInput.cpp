@@ -1,3 +1,18 @@
+/*
+-----------------------------------------------------------------------------------
+Laboratoire : Labo08
+Fichier     : userInput.cpp
+Auteur(s)   : Ilias Goujgali, Benoit Perret, Doran Kayoumi
+Date        : 12.12.2018
+
+But         : Contient toute les fonctions en liens avec la saisie utilisateur
+
+Remarque(s) :
+
+Compilateur : MinGW-g++ <6.3.0>
+-----------------------------------------------------------------------------------
+ */
+
 #include <string>
 #include "userInput.h"
 #include <sstream>
@@ -24,13 +39,13 @@ bool isValidInput(const std::string &input) {
 
 bool isValidDirection(const char &direction) {
   switch (direction) {
-    case Directions::UP:
+    case Direction::UP:
       break;
-    case Directions::DOWN:
+    case Direction::DOWN:
       break;
-    case Directions::LEFT:
+    case Direction::LEFT:
       break;
-    case Directions::RIGHT:
+    case Direction::RIGHT:
       break;
     default:
       return false;

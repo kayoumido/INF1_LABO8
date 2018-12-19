@@ -5,48 +5,47 @@
 
 
 /**
- * @brief return a string with the possible moves in function of a given free cell
+ * @brief get the possible moves the user can make
  *
- * @param Board
- * @param pos Direction deftype which describe position
- * @return a string which describe the possible moves
- * @return vector containing string of the help moves
+ * @param[board] gameBoard
+ * @param[coordinates] freeCell
+ * @return[vector] list of the possible moves the user can make
  */
-std::vector<std::string> getPossibilities(const board &gameBoard, const coordinates &freeCell);
+std::vector<std::string> getPossibilities(const board &gameBoard, const coordinate &freeCell);
 
 /**
  * @brief format position with the given direction
  *
- * @param direction
- * @param pos
- * @return string with the possible move
+ * @param[Direction] direction
+ * @param[coordinate] position
+ * @return[string] formatted movement
  */
-std::string formatHelpMove(const Directions &direction, const coordinates &pos);
+std::string formatHelpMove(const Direction &direction, const coordinate &position);
 
 /**
- * @brief Check that the position is still on the board
+ * @brief check that a coordinate is still withing the board
  *
- * @param position
- * @return bool
+ * @param[unsigned] position to check
+ * @return[bool]
  */
 bool isOnBoard(const unsigned &position);
 
 /**
- * @brief Return help moves foreach free cells of the board
+ * @brief get all the possible moves for every free cell on the board
  *
- * @param gameBoard
- * @return
+ * @param[board] gameBoard
+ * @return[vector] list of all the possible moves
  */
 std::vector<std::string> getHelpMoves(const board &gameBoard);
 
 /**
- * @brief Return true if the given cell (row, cell indices) is a peg
+ * @brief check if a cell contains a peg
  *
- * @param gameBoard
- * @param pos
- * @return
+ * @param[board] gameBoard
+ * @param[coordinate] position
+ * @return[bool]
  */
-bool cellHasPeg(const board &gameBoard, const coordinates &pos);
+bool cellHasPeg(const board &gameBoard, const coordinate &position);
 
 #endif
 

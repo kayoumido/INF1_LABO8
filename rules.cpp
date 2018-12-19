@@ -4,7 +4,7 @@ Laboratoire : Labo08
 Fichier     : rules.cpp
 Auteur(s)   : Ilias Goujgali, Benoit Perret, Doran Kayoumi
 Date        : 12.12.2018
-But         :
+But         : Contient les fonctions afin d'appliquer les règles du jeu
 Remarque(s) :
 
 Compilateur : MinGW-g++ <6.3.0>
@@ -14,46 +14,46 @@ Compilateur : MinGW-g++ <6.3.0>
 #include <string>
 #include "rules.h"
 
-bool isLegalMove(board board, std::string move) {
+bool isLegalMove(board gameBoard, std::string move) {
 
   char direction = move[INPUT_DIRECTION_POSITION];
 
-  coordinates pegCoordinates = {
+  coordinate pegCoordinates = {
           charToInt(move[INPUT_ROW_POSITION]) - 1,
           charToInt(move[INPUT_COL_POSITION]) - 1
   };
 
-  if (board[pegCoordinates[I_COORDINATE]][pegCoordinates[J_COORDINATE]] != CellState::PEG) return false;
+  if (gameBoard[pegCoordinates[I_COORDINATE]][pegCoordinates[J_COORDINATE]] != CellState::PEG) return false;
 
-  coordinates pegToRemove;
-  coordinates newCoordinates;
+  coordinate pegToRemove;
+  coordinate newCoordinates;
   getCoordinates(pegCoordinates, pegToRemove, direction, 1);
   getCoordinates(pegCoordinates, newCoordinates, direction, MOVEMENT_SIZE);
 
-  return board[pegToRemove[I_COORDINATE]][pegToRemove[J_COORDINATE]] == CellState::PEG and
-         board[newCoordinates[I_COORDINATE]][newCoordinates[J_COORDINATE]] == CellState::HOLE;
+  return gameBoard[pegToRemove[I_COORDINATE]][pegToRemove[J_COORDINATE]] == CellState::PEG and
+         gameBoard[newCoordinates[I_COORDINATE]][newCoordinates[J_COORDINATE]] == CellState::HOLE;
 }
 
-void movePeg(board board, std::string move) {
+void movePeg(board gameBoard, std::string move) {
 
   char direction = move[INPUT_DIRECTION_POSITION];
-  coordinates pegCoordinates = {
+  coordinate pegCoordinates = {
           charToInt(move[INPUT_ROW_POSITION]) - 1,
           charToInt(move[INPUT_COL_POSITION]) - 1
   };
 
-  coordinates pegToRemove;
-  coordinates newCoordinates;
+  coordinate pegToRemove;
+  coordinate newCoordinates;
   getCoordinates(pegCoordinates, pegToRemove, direction, 1);
   getCoordinates(pegCoordinates, newCoordinates, direction, MOVEMENT_SIZE);
 
-  board[pegToRemove[I_COORDINATE]][pegToRemove[J_COORDINATE]] = CellState::HOLE;
-  board[pegCoordinates[I_COORDINATE]][pegCoordinates[J_COORDINATE]] = CellState::HOLE;
-  board[newCoordinates[I_COORDINATE]][newCoordinates[J_COORDINATE]] = CellState::PEG;
+  gameBoard[pegToRemove[I_COORDINATE]][pegToRemove[J_COORDINATE]] = CellState::HOLE;
+  gameBoard[pegCoordinates[I_COORDINATE]][pegCoordinates[J_COORDINATE]] = CellState::HOLE;
+  gameBoard[newCoordinates[I_COORDINATE]][newCoordinates[J_COORDINATE]] = CellState::PEG;
 }
 
-void getCoordinates(coordinates currentCoordinates,
-                    coordinates newCoordinates,
+void getCoordinates(coordinate currentCoordinates,
+                    coordinate newCoordinates,
                     char direction,
                     unsigned movementSize) {
 
@@ -61,16 +61,16 @@ void getCoordinates(coordinates currentCoordinates,
   newCoordinates[J_COORDINATE] = currentCoordinates[J_COORDINATE];
 
   switch (direction) {
-    case Directions::UP:
+    case Direction::UP:
       newCoordinates[I_COORDINATE] -= movementSize;
       break;
-    case Directions::DOWN:
+    case Direction::DOWN:
       newCoordinates[I_COORDINATE] += movementSize;
       break;
-    case Directions::RIGHT:
+    case Direction::RIGHT:
       newCoordinates[J_COORDINATE] += movementSize;
       break;
-    case Directions::LEFT:
+    case Direction::LEFT:
       newCoordinates[J_COORDINATE] -= movementSize;
       break;
     default:;

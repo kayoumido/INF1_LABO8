@@ -17,38 +17,46 @@ const char SPACE = ' ';
 const unsigned short COL_WIDTH = 3;
 
 /**
- * @brief Display the board
- * @param board
+ * @brief display the game board
+ *
+ * @param[board] gameBoard to display
+ * @return[void]
  */
-void display(board);
+void display(board gameBoard);
 
 /**
  * @brief display a message with the possible moves
- * @param helpMoves
+ *
+ * @param[vector] helpMoves the possible moves that can be made
+ * @return[void]
  */
 void displayHelpMessage(std::vector<std::string> helpMoves);
 
 /**
- * @brief display the error message
- * @param
+ * @brief display an error message
+ *
+ * @return[void]
  */
 void displayErrorMessage();
 
 /**
  * @brief display the end game message
- * @param board
- * @param nbPegsLeft
+ *
+ * @param[board] gameBoard in which the game was played
+ * @param[unsigned] nbPegsLeft number of pegs left on the board
+ * @return[void]
  */
-void displayEndGame(board board, unsigned nbPegsLeft);
+void displayEndGame(board gameBoard, unsigned nbPegsLeft);
 
 /**
- * @brief Identify the cell state and return the corresponding character
+ * @brief identify the sate of a cell and return the corresponding character
  *
- * @param board
- * @param row
- * @param column
+ * @param[board] game board
+ * @param[int] row of the cell
+ * @param[int] column of the cell
+ * @return[void]
  */
-std::string getDisplayValue(const board board, int row, int col);
+std::string getDisplayValue(const board gameBoard, int row, int col);
 
 /**
  * @brief ask for user input

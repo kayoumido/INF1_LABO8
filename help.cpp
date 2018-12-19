@@ -5,8 +5,9 @@ Fichier     : help.cpp
 Auteur(s)   : Ilias Goujgali, Benoit Perret, Doran Kayoumi
 Date        : 12.12.2018
 
-But         : ce fichier contient les fonctions permettant de donner les mouvements possibles afin d'aider le joueur
-              en fonction des cases vides du jeu
+But         : Contient toutes les fonctions permettant de donner
+              les mouvements possibles afin d'aider le joueur en fonction
+              des cases vides sur le tablier
 
 Remarque(s) :
 
@@ -24,7 +25,7 @@ std::vector<std::string> getHelpMoves(const board &gameBoard) {
   for (unsigned row = 0; row < BOARD_ROW_SIZE; ++row) {
     for (unsigned col = 0; col < BOARD_COL_SIZE; ++col) {
       if (gameBoard[row][col] == CellState::HOLE) {
-        coordinates freeCell = {row, col};
+        coordinate freeCell = {row, col};
         std::vector<std::string> movePossibilities = getPossibilities(gameBoard, freeCell);
         helpMoves.insert(helpMoves.end(), movePossibilities.begin(), movePossibilities.end());
       }
@@ -33,17 +34,16 @@ std::vector<std::string> getHelpMoves(const board &gameBoard) {
   return helpMoves;
 }
 
-std::vector<std::string> getPossibilities(const board &gameBoard, const coordinates &freeCell) {
+std::vector<std::string> getPossibilities(const board &gameBoard, const coordinate &freeCell) {
   std::vector<std::string> result;
   // check that the free cell isn't too close from...
   // the left side of the board
-
-  coordinates pegToMove = {freeCell[0], freeCell[1] - 2};
+  coordinate pegToMove = {freeCell[0], freeCell[1] - 2};
   if (isOnBoard(pegToMove[1])) {
-    coordinates pegToJumpOver = {freeCell[0], freeCell[1] - 1};
+    coordinate pegToJumpOver = {freeCell[0], freeCell[1] - 1};
 
     if (cellHasPeg(gameBoard, pegToJumpOver) && cellHasPeg(gameBoard, pegToMove)) {
-      result.push_back(formatHelpMove(Directions::RIGHT, pegToMove));
+      result.push_back(formatHelpMove(Direction::RIGHT, pegToMove));
     }
   }
 
@@ -53,11 +53,11 @@ std::vector<std::string> getPossibilities(const board &gameBoard, const coordina
 
 
   if (isOnBoard(pegToMove[0])) {
-    coordinates pegToJumpOver = {freeCell[0] - 1, freeCell[1]};
+    coordinate pegToJumpOver = {freeCell[0] - 1, freeCell[1]};
 
     if (cellHasPeg(gameBoard, pegToJumpOver) && cellHasPeg(gameBoard, pegToMove)) {
 
-      result.push_back(formatHelpMove(Directions::DOWN, pegToMove));
+      result.push_back(formatHelpMove(Direction::DOWN, pegToMove));
     }
   }
   // the right side of the board
@@ -65,10 +65,10 @@ std::vector<std::string> getPossibilities(const board &gameBoard, const coordina
   pegToMove[1] = freeCell[1] + 2;
 
   if (isOnBoard(pegToMove[1])) {
-    coordinates pegToJumpOver = {freeCell[0], freeCell[1] + 1};
+    coordinate pegToJumpOver = {freeCell[0], freeCell[1] + 1};
 
     if (cellHasPeg(gameBoard, pegToJumpOver) && cellHasPeg(gameBoard, pegToMove)) {
-      result.push_back(formatHelpMove(Directions::LEFT, pegToMove));
+      result.push_back(formatHelpMove(Direction::LEFT, pegToMove));
     }
   }
 
@@ -77,24 +77,24 @@ std::vector<std::string> getPossibilities(const board &gameBoard, const coordina
   pegToMove[1] = freeCell[1];
 
   if (isOnBoard(pegToMove[0])) {
-    coordinates pegToJumpOver = {freeCell[0] + 1, freeCell[1]};
+    coordinate pegToJumpOver = {freeCell[0] + 1, freeCell[1]};
 
     if (cellHasPeg(gameBoard, pegToJumpOver) && cellHasPeg(gameBoard, pegToMove)) {
-      result.push_back(formatHelpMove(Directions::UP, pegToMove));
+      result.push_back(formatHelpMove(Direction::UP, pegToMove));
     }
   }
   return result;
 }
 
 
-bool cellHasPeg(const board &gameBoard, const coordinates &pos) {
-  return (gameBoard[pos[0]][pos[1]] == CellState::PEG);
+bool cellHasPeg(const board &gameBoard, const coordinate &position) {
+  return (gameBoard[position[0]][position[1]] == CellState::PEG);
 }
 
 bool isOnBoard(const unsigned &position) {
   return (position <= BOARD_COL_SIZE - 1);
 }
 
-std::string formatHelpMove(const Directions &direction, const coordinates &pos) {
-  return std::to_string(pos[0] + 1) + std::to_string(pos[1] + 1) + char(direction);
+std::string formatHelpMove(const Direction &direction, const coordinate &position) {
+  return std::to_string(position[0] + 1) + std::to_string(position[1] + 1) + char(direction);
 }

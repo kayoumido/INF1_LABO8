@@ -13,24 +13,24 @@ std::string getUserInput();
  * @brief check if the user input is a special command
  * @example q for quit, h for help
  *
- * @param input
- * @param command
- * @return
+ * @param[string] input command given by the user
+ * @param[string] command the possible command to xecute
+ * @return[bool]
  */
 bool isCommand(const std::string &input, const std::string &command);
 
 /**
- * @brief check if the user input
- * @param input
- * @return
+ * @brief check if the user input is valid. i.e. composed of two digits and an alpha
+ * @param[string] input to validate
+ * @return[bool]
  */
 bool isValidInput(const std::string &input);
 
 /**
- *
  * @brief check the direction(l,r,d,u)
- * @param direction
- * @return
+ *
+ * @param[char] direction
+ * @return[bool]
  */
 bool isValidDirection(const char &direction);
 

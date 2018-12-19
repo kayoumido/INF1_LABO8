@@ -5,7 +5,7 @@ Fichier     : main.cpp
 Auteur(s)   : Ilias Goujgali, Benoit Perret, Doran Kayoumi
 Date        : 12.12.2018
 
-But         :
+But         : Fichier principale, contenant la boucle d'execution du jeu
 
 Remarque(s) :
 

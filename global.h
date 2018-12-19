@@ -13,7 +13,7 @@ const unsigned short INPUT_COL_POSITION = 1;
 const unsigned short INPUT_DIRECTION_POSITION = 2;
 
 typedef char board[BOARD_COL_SIZE][BOARD_ROW_SIZE];
-typedef unsigned coordinates[COORDINATES_SIZE];
+typedef unsigned coordinate[COORDINATES_SIZE];
 
 enum CellState {
   HOLE = 'O',
@@ -21,7 +21,7 @@ enum CellState {
   OUTBOUNDS = 'V'
 };
 
-enum Directions {
+enum Direction {
   UP = 'u',
   DOWN = 'd',
   RIGHT = 'r',
