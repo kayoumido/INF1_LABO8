@@ -8,9 +8,41 @@ const unsigned short INPUT_DIRECTION_POSITION = 2;
 const unsigned short ASCII_NUMBER_START = 48;
 const unsigned MOVEMENT_SIZE = 2;
 
+/**
+ * @brief check if the move entered by the user is valid
+ *
+ * @param[board] game board
+ * @param[string] move entered by the user
+ * @return[boolean] true if it's valid otherwise false
+ */
 bool isLegalMove(board board, std::string move);
-void getCoordinates(coordinates currentCoordinates, coordinates newCoordinates, char direction, unsigned movement_size);
+
+/**
+ * @biref get the coordinates based of existing coordinates
+ *
+ * @param[coordinates] currentCoordinates existing coordinates
+ * @param[coordinates] newCoordinates container for the new containers
+ * @param[char] direction in which to move
+ * @param[unsigned] movementSize size of the movement
+ * @return[void]
+ */
+void getCoordinates(coordinates currentCoordinates, coordinates newCoordinates, char direction, unsigned movementSize);
+
+/**
+ * @brief move a peg within a game board
+ *
+ * @param[board] game board
+ * @param[string] move to perform (coordinates in the board an direction in which to move)
+ * @return[void]
+ */
 void movePeg(board board, std::string move);
+
+/**
+ * @brief convert a char into an int
+ *
+ * @param[char] character to converter
+ * @return[unsigned] the converted value
+ */
 unsigned charToInt(const char &character);
 
 #endif

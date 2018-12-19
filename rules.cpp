@@ -55,23 +55,23 @@ void movePeg(board board, std::string move) {
 void getCoordinates(coordinates currentCoordinates,
                     coordinates newCoordinates,
                     char direction,
-                    unsigned movement_size) {
+                    unsigned movementSize) {
 
   newCoordinates[I_COORDINATE] = currentCoordinates[I_COORDINATE];
   newCoordinates[J_COORDINATE] = currentCoordinates[J_COORDINATE];
 
   switch (direction) {
     case Directions::UP:
-      newCoordinates[I_COORDINATE] += movement_size;
+      newCoordinates[I_COORDINATE] += movementSize;
       break;
     case Directions::DOWN:
-      newCoordinates[I_COORDINATE] -= movement_size;
+      newCoordinates[I_COORDINATE] -= movementSize;
       break;
     case Directions::RIGHT:
-      newCoordinates[J_COORDINATE] += movement_size;
+      newCoordinates[J_COORDINATE] += movementSize;
       break;
     case Directions::LEFT:
-      newCoordinates[J_COORDINATE] -= movement_size;
+      newCoordinates[J_COORDINATE] -= movementSize;
       break;
     default:;
   }
