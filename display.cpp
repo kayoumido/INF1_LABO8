@@ -13,9 +13,9 @@ Compilateur : MinGW-g++ <6.3.0>
 -----------------------------------------------------------------------------------
  */
 
-#include "display.h"
 #include <iostream>
 #include <string>
+#include "display.h"
 
 /** Generate
  * 
@@ -73,7 +73,7 @@ std::string getDisplayValue(const board board, int row, int col) {
         case CellState::HOLE:
             return HOLE_DISPLAY_VALUE;
         case CellState::PEG:
-            return std::to_string(row) + std::to_string(col);
+            return std::to_string(row + 1) + std::to_string(col + 1);
         // SHOULD NEVER HAPPEN
         default:
             return "E";

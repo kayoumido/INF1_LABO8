@@ -62,10 +62,10 @@ void getCoordinates(coordinates currentCoordinates,
 
   switch (direction) {
     case Directions::UP:
-      newCoordinates[I_COORDINATE] += movementSize;
+      newCoordinates[I_COORDINATE] -= movementSize;
       break;
     case Directions::DOWN:
-      newCoordinates[I_COORDINATE] -= movementSize;
+      newCoordinates[I_COORDINATE] += movementSize;
       break;
     case Directions::RIGHT:
       newCoordinates[J_COORDINATE] += movementSize;
