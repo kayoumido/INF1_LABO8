@@ -13,19 +13,24 @@ Compilateur : MinGW-g++ <6.3.0>
 -----------------------------------------------------------------------------------
  */
 
+#include "display.h"
 #include <iostream>
 #include <string>
-#include "display.h"
 
+/** Generate
+ * 
+ * @brief Generate the initial board disposition
+ * @param board
+ */
 void generate(board board) {
     for (int row = 0; row < BOARD_ROW_SIZE; ++row) {
         for (int col = 0; col < BOARD_COL_SIZE; ++col) {
-
+            // If we are currently on the position of the empty hole, we fill the array with it
             if (row == INITIAL_EMPTY_HOLE[0] and col == INITIAL_EMPTY_HOLE[1]) {
                 board[row][col] = CellState::HOLE;
                 continue;
             }
-
+            // If we are on the margin of the board, the array is filled with an outbound identifier
             if ((row < MARGIN and col < MARGIN) or
                 (row > BOARD_ROW_SIZE - MARGIN - 1 and col > BOARD_COL_SIZE - MARGIN - 1) or
                 (row < MARGIN and col > BOARD_COL_SIZE - MARGIN - 1) or
@@ -39,6 +44,11 @@ void generate(board board) {
     }
 }
 
+/** Display
+ * 
+ * @brief Display the board
+ * @param board
+ */
 void display(board board) {
     for (int row = 0; row < BOARD_ROW_SIZE; ++row) {
         for (int col = 0; col < BOARD_COL_SIZE; ++col) {
@@ -48,6 +58,14 @@ void display(board board) {
     }
 }
 
+/** getDisplayValue
+ * 
+ * @brief Identify the cell state and return the corresponding character
+ * @param board
+* @param row
+* @param column
+
+ */
 std::string getDisplayValue(const board board, int row, int col) {
     switch (board[row][col]) {
         case CellState::OUTBOUNDS:
@@ -57,6 +75,7 @@ std::string getDisplayValue(const board board, int row, int col) {
         case CellState::PEG:
             return std::to_string(row) + std::to_string(col);
         // SHOULD NEVER HAPPEN
-        default:return "E";
+        default:
+            return "E";
     }
 }
