@@ -19,8 +19,8 @@ Compilateur : MinGW-g++ <6.3.0>
 #include <vector>
 #include "help.h"
 
-std::vector<std::string> getHelpMoves(const board& gameBoard) {
-    std::vector<std::string>  helpMoves;
+std::vector<std::string> getHelpMoves(const board &gameBoard) {
+    std::vector<std::string> helpMoves;
     for (unsigned row = 0; row < BOARD_ROW_SIZE; ++row) {
         for (unsigned col = 0; col < BOARD_COL_SIZE; ++col) {
             if (gameBoard[row][col] == CellState::HOLE) {
@@ -33,7 +33,7 @@ std::vector<std::string> getHelpMoves(const board& gameBoard) {
     return helpMoves;
 }
 
-std::vector<std::string> getPossibilities(const board& gameBoard, const coordinates& freeCell) {
+std::vector<std::string> getPossibilities(const board &gameBoard, const coordinates &freeCell) {
     std::vector<std::string> result;
     // check that the free cell isn't too close from...
     // the left side of the board
@@ -87,14 +87,14 @@ std::vector<std::string> getPossibilities(const board& gameBoard, const coordina
 }
 
 
-bool cellHasPeg(const board& gameBoard, const coordinates& pos) {
+bool cellHasPeg(const board &gameBoard, const coordinates &pos) {
     return (gameBoard[pos[0]][pos[1]] == CellState::PEG);
 }
 
-bool isOnBoard(const unsigned& position) {
+bool isOnBoard(const unsigned &position) {
     return (position <= BOARD_COL_SIZE - 1);
 }
 
-std::string formatHelpMove(const Directions& direction, const coordinates& pos) {
+std::string formatHelpMove(const Directions &direction, const coordinates &pos) {
     return std::to_string(pos[0] + 1) + std::to_string(pos[1] + 1) + char(direction);
 }

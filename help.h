@@ -1,5 +1,6 @@
 #ifndef LABO08_HELP_H
 #define LABO08_HELP_H
+
 #include "global.h"
 
 
@@ -11,7 +12,7 @@
  * @return a string which describe the possible moves
  * @return vector containing string of the help moves
  */
-std::vector<std::string> getPossibilities(const board& gameBoard, const coordinates& freeCell);
+std::vector<std::string> getPossibilities(const board &gameBoard, const coordinates &freeCell);
 
 /**
  * @brief format position with the given direction
@@ -20,7 +21,7 @@ std::vector<std::string> getPossibilities(const board& gameBoard, const coordina
  * @param pos
  * @return string with the possible move
  */
-std::string formatHelpMove(const Directions& direction, const coordinates& pos);
+std::string formatHelpMove(const Directions &direction, const coordinates &pos);
 
 /**
  * @brief Check that the position is still on the board
@@ -28,7 +29,7 @@ std::string formatHelpMove(const Directions& direction, const coordinates& pos);
  * @param position
  * @return bool
  */
-bool isOnBoard(const unsigned& position);
+bool isOnBoard(const unsigned &position);
 
 /**
  * @brief Return help moves foreach free cells of the board
@@ -36,7 +37,7 @@ bool isOnBoard(const unsigned& position);
  * @param gameBoard
  * @return
  */
-std::vector<std::string> getHelpMoves(const board& gameBoard);
+std::vector<std::string> getHelpMoves(const board &gameBoard);
 
 /**
  * @brief Return true if the given cell (row, cell indices) is a peg
@@ -45,7 +46,7 @@ std::vector<std::string> getHelpMoves(const board& gameBoard);
  * @param pos
  * @return
  */
-bool cellHasPeg(const board& gameBoard, const coordinates& pos);
+bool cellHasPeg(const board &gameBoard, const coordinates &pos);
 
 #endif
 
