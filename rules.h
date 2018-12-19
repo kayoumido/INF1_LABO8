@@ -1,5 +1,6 @@
 #ifndef LABO08_RULES_H
 #define LABO08_RULES_H
+
 #include "global.h"
 #include <vector>
 #include <string>
@@ -49,7 +50,7 @@ unsigned charToInt(const char &character);
  * @param helpMoves vector of possible moves
  * @return bool
  */
-bool isEndGame(const std::vector<std::string>& helpMoves);
+bool isEndGame(const std::vector<std::string> &helpMoves);
 
 /**
  * @brief generate(fill) a board game
@@ -57,4 +58,5 @@ bool isEndGame(const std::vector<std::string>& helpMoves);
  *
  */
 void generate(board);
+
 #endif

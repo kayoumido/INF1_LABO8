@@ -4,8 +4,15 @@
 #include "global.h"
 
 /**
+ * @brief ask for user input
+ * @return[string] the value given by the user
+ */
+std::string getUserInput();
+
+/**
  * @brief check if the user input is a special command
  * @example q for quit, h for help
+ *
  * @param input
  * @param command
  * @return

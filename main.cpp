@@ -19,56 +19,60 @@ Compilateur : MinGW-g++ <6.3.0>
 #include "help.h"
 #include "userInput.h"
 
-#include <vector>
 
 using namespace std;
 
 int main() {
-    const string QUIT_COMMAND = "q";
-    const string HELP_COMMAND = "h";
-    board board;
-    generate(board);
+  const string QUIT_COMMAND = "q";
+  const string HELP_COMMAND = "h";
+  board board;
+  generate(board);
 
-    string move;
-    bool endGame = false;
-    unsigned nbPegs = BOARD_ROW_SIZE * BOARD_COL_SIZE - 4 * (MARGIN * MARGIN) - 1;
-    do {
-        display(board);
-        cout << "Déplacement : ";
-        cin >> move;
+  string move;
+  bool endGame = false;
+  bool quit = false;
+  unsigned nbPegs = BOARD_ROW_SIZE * BOARD_COL_SIZE - 4 * (MARGIN * MARGIN) - 1;
+  do {
+    display(board);
+    askForUserInput();
+    move = getUserInput();
 
-        if (isCommand(move, QUIT_COMMAND)) {
-            endGame = true;
-            continue;
-        }
+    if (isCommand(move, QUIT_COMMAND)) {
+      endGame = true;
+      quit = true;
+      continue;
+    }
 
-        if (isCommand(move, HELP_COMMAND)) {
-            displayHelpMessage(getHelpMoves(board));
-        }
+    if (isCommand(move, HELP_COMMAND)) {
+      displayHelpMessage(getHelpMoves(board));
+      continue;
+    }
 
-        if (!isValidInput(move)) {
-            displayErrorMessage();
-            continue;
-        }
+    if (!isValidInput(move)) {
+      displayErrorMessage();
+      continue;
+    }
 
-        if (isLegalMove(board, move)) {
-            movePeg(board, move);
-            nbPegs--;
-        } else {
-            displayErrorMessage();
-            continue;
-        }
+    if (isLegalMove(board, move)) {
+      movePeg(board, move);
+      nbPegs--;
+    } else {
+      displayErrorMessage();
+      continue;
+    }
 
-        if (isEndGame(getHelpMoves(board))) {
-            endGame = true;
-            display(board);
-            continue;
-        }
+    if (isEndGame(getHelpMoves(board))) {
+      endGame = true;
+      display(board);
+      continue;
+    }
+  } while (!endGame);
 
-        cout << endl;
-    } while (!endGame);
-
+  if (quit) {
+    displayQuitMessage();
+  } else {
     displayEndGame(board, nbPegs);
+  }
 
-    return 0;
+  return 0;
 }

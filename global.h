@@ -16,15 +16,15 @@ typedef char board[BOARD_COL_SIZE][BOARD_ROW_SIZE];
 typedef unsigned coordinates[COORDINATES_SIZE];
 
 enum CellState {
-    HOLE = 'O',
-    PEG = '*',
-    OUTBOUNDS = 'V'
+  HOLE = 'O',
+  PEG = '*',
+  OUTBOUNDS = 'V'
 };
 
 enum Directions {
-    UP = 'u',
-    DOWN = 'd',
-    RIGHT = 'r',
-    LEFT = 'l'
+  UP = 'u',
+  DOWN = 'd',
+  RIGHT = 'r',
+  LEFT = 'l'
 };
 #endif
