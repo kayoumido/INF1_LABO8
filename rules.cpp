@@ -85,3 +85,30 @@ bool isEndGame(const std::vector<std::string>& helpMoves)
 {
   return !helpMoves.size();
 }
+
+/** Generate
+ *
+ * @brief Generate the initial board disposition
+ * @param board
+ */
+void generate(board board) {
+  for (int row = 0; row < BOARD_ROW_SIZE; ++row) {
+    for (int col = 0; col < BOARD_COL_SIZE; ++col) {
+      // If we are currently on the position of the empty hole, we fill the array with it
+      if (row == INITIAL_EMPTY_HOLE[0] and col == INITIAL_EMPTY_HOLE[1]) {
+        board[row][col] = CellState::HOLE;
+        continue;
+      }
+      // If we are on the margin of the board, the array is filled with an outbound identifier
+      if ((row < MARGIN and col < MARGIN) or
+          (row > BOARD_ROW_SIZE - MARGIN - 1 and col > BOARD_COL_SIZE - MARGIN - 1) or
+          (row < MARGIN and col > BOARD_COL_SIZE - MARGIN - 1) or
+          (row > BOARD_ROW_SIZE - MARGIN - 1 and col < MARGIN)) {
+        board[row][col] = CellState::OUTBOUNDS;
+        continue;
+      }
+
+      board[row][col] = CellState::PEG;
+    }
+  }
+}

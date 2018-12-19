@@ -37,7 +37,7 @@ bool isOnBoard(const unsigned& position);
  * @param gameBoard
  * @return
  */
-std::vector<std::string> getHelpMoves(const board& gameBoard;
+std::vector<std::string> getHelpMoves(const board& gameBoard);
 
 /**
  * @brief Return true if the given cell (row, cell indices) is a peg

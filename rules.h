@@ -50,4 +50,11 @@ unsigned charToInt(const char &character);
  * @return bool
  */
 bool isEndGame(const std::vector<std::string>& helpMoves);
+
+/**
+ * @brief generate(fill) a board game
+ * @param board game board
+ *
+ */
+void generate(board);
 #endif

@@ -15,6 +15,7 @@ Compilateur : MinGW-g++ <6.3.0>
 
 #include <iostream>
 #include "display.h"
+#include "rules.h"
 #include "help.h"
 #include <vector>
 using namespace std;
@@ -27,6 +28,7 @@ int main() {
     {
         cout << move <<" ";
     }
+
     cout<< endl;
     display(board);
 
