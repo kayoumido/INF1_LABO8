@@ -3,7 +3,7 @@
 
 #include "global.h"
 
-bool isCommand(const std::string &input, const char &command);
+bool isCommand(const std::string &input, const std::string &command);
 
 bool isValidInput(const std::string &input);
 

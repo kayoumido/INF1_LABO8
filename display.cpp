@@ -16,6 +16,7 @@ Compilateur : MinGW-g++ <6.3.0>
 #include <iostream>
 #include <iomanip>
 #include <string>
+#include <vector>
 #include "display.h"
 
 
@@ -55,4 +56,40 @@ std::string getDisplayValue(const board board, int row, int col) {
     default:
       return "E";
   }
+}
+
+void displayHelpMessage(std::vector<std::string> helpMoves) {
+  std::cout << HELP_MESSAGE << " ";
+
+  for (std::string move : helpMoves) {
+    std::cout << move << " ";
+  }
+  std::cout << std::endl;
+}
+
+void displayErrorMessage() {
+  std::cout << ERROR_MESSAGE << std::endl;
+}
+
+void displayEndGame(board board, unsigned nbPegsLeft) {
+
+  if (nbPegsLeft == 1 ) {
+    if(board[INITIAL_EMPTY_HOLE[I_COORDINATE]][INITIAL_EMPTY_HOLE[J_COORDINATE]] == CellState::PEG)
+    {
+      std::cout << PERFECT_MESSAGE;
+    }
+    else
+    {
+      std::cout << ALMOST_PERFECT_MESSAGE;
+    }
+  }
+  else if (nbPegsLeft >=2 && nbPegsLeft <=5)
+  {
+    std::cout << NOT_BAD_MESSAGE << nbPegsLeft << " "<< PEG_TRANSLATION;
+  }
+  else
+  {
+    std::cout << CAN_DO_BETTER_MESSAGE << nbPegsLeft << " " << PEG_TRANSLATION;
+  }
+  std::cout << std::endl;
 }

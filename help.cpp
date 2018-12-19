@@ -19,8 +19,6 @@ Compilateur : MinGW-g++ <6.3.0>
 #include <vector>
 #include "help.h"
 
-
-
 std::vector<std::string> getHelpMoves(const board& gameBoard) {
     std::vector<std::string>  helpMoves;
     for (unsigned row = 0; row < BOARD_ROW_SIZE; ++row) {
@@ -34,7 +32,6 @@ std::vector<std::string> getHelpMoves(const board& gameBoard) {
     }
     return helpMoves;
 }
-
 
 std::vector<std::string> getPossibilities(const board& gameBoard, const coordinates& freeCell) {
     std::vector<std::string> result;

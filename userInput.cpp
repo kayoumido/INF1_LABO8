@@ -27,7 +27,7 @@ bool isValidDirection(const char& direction) {
   return true;
 }
 
-bool isCommand(const std::string &input, const char &command) {
-  return input == std::to_string(command);
+bool isCommand(const std::string &input, const std::string &command) {
+  return input == command;
 }
 
