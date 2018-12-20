@@ -19,8 +19,8 @@ std::string getUserInput();
  * @example q for quit, h for help
  *
  * @param input command given by the user
- * @param command the possible command to xecute
- * @return
+ * @param command the possible command to execute
+ * @return true if is a command
  */
 bool isCommand(const std::string &input, const std::string &command);
 
@@ -32,10 +32,10 @@ bool isCommand(const std::string &input, const std::string &command);
 bool isValidInput(const std::string &input);
 
 /**
- * @brief check the direction(l,r,d,u)
+ * @brief check the direction
  *
- * @param direction
- * @return
+ * @param direction the direction to check
+ * @return true if the direction exists (l,r,d,u)
  */
 bool isValidDirection(const char &direction);
 
