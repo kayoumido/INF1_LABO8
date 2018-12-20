@@ -1,3 +1,7 @@
+/**
+* @file display.h
+* @brief This file contains the functions that are used to dipslay the board and some messages
+*/
 #include "global.h"
 #include <vector>
 

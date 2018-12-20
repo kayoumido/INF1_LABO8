@@ -1,3 +1,8 @@
+/**
+* @file global.h
+* @brief This file contains all the settings of the board disposition, cell state and directions.
+*/
+
 #ifndef LABO08_GLOBAL_H
 #define LABO08_GLOBAL_H
 
