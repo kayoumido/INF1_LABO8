@@ -1,3 +1,8 @@
+/**
+ * @file rules.h
+ * @brief this file contains the function that implement the game logic
+*/
+
 #ifndef LABO08_RULES_H
 #define LABO08_RULES_H
 

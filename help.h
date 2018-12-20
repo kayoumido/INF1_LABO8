@@ -1,3 +1,7 @@
+/**
+ * @file help.h
+ * @brief This file contains the functions that are used to get the possible move
+*/
 #ifndef LABO08_HELP_H
 #define LABO08_HELP_H
 

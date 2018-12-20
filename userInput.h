@@ -1,3 +1,8 @@
+/**
+ * @file userInput.h
+ * @brief This file contains the function that check the input of the user
+*/
+
 #ifndef LABO08_USERINPUT_H
 #define LABO08_USERINPUT_H
 
