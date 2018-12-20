@@ -33,3 +33,6 @@
 
 # Visual Studio code configuration files
 .vscode/
+
+# Doxygen files
+docs/
